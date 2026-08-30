@@ -176,7 +176,7 @@ The firmware compiled by the RISC-V GCC toolchain is loaded into the Instruction
 #define ACCEL_BASE       0x40000000
 #define REG_ACCEL_CTRL   ((volatile uint32_t*)(ACCEL_BASE + 0x00))
 #define REG_ACCEL_STAT   ((volatile uint32_t*)(ACCEL_BASE + 0x04))
-#define REG_ACCEL_SIZE   ((volatile uint32_t*)(ACCEL_BASE + 0x08))
+#define REG_ACCEL_SIZE   ((volatile uint32_t*)(ACCEL_BASE + 0x08)
 #define REG_ACCEL_K      ((volatile uint32_t*)(ACCEL_BASE + 0x0C))
 #define REG_ACCEL_ADDR_A ((volatile uint32_t*)(ACCEL_BASE + 0x10))
 #define REG_ACCEL_ADDR_B ((volatile uint32_t*)(ACCEL_BASE + 0x14))
