@@ -1,0 +1,10 @@
+# ==============================================================================
+# File: synthesis/de10_lite.qpf
+# Project: DE10-Lite RISC-V + AI Accelerator SoC
+# ==============================================================================
+
+QUARTUS_VERSION = "20.1"
+DATE = "October 2026"
+
+# Revisions
+PROJECT_REVISION = "de10_lite"

@@ -1,0 +1,11 @@
+# ==============================================================================
+# File: de10_lite.qpf
+# Project: DE10-Lite RISC-V + AI Accelerator SoC
+# Target: Intel MAX 10 (10M50DAF484C7G)
+# ==============================================================================
+
+QUARTUS_VERSION = "20.1"
+DATE = "October 2026"
+
+# Revisions
+PROJECT_REVISION = "de10_lite"

@@ -1,0 +1,31 @@
+# ==============================================================================
+# File: synthesis/synth_soc_xc7.ys
+# Description: Full SoC Synthesis targeting Xilinx 7-Series (Artix-7 / Zynq-7000)
+# ==============================================================================
+
+read_slang --std 1800-2017 --unroll-limit 5000 \
+    rtl/core/riscv_pkg.sv \
+    rtl/accelerator/accelerator_pkg.sv \
+    rtl/core/alu.sv \
+    rtl/core/branch_comp.sv \
+    rtl/core/control_unit.sv \
+    rtl/core/hazard_unit.sv \
+    rtl/core/imm_gen.sv \
+    rtl/core/load_store_unit.sv \
+    rtl/core/register_file.sv \
+    rtl/core/riscv_core.sv \
+    rtl/soc_interconnect.sv \
+    rtl/soc_sram.sv \
+    rtl/accelerator/mac.sv \
+    rtl/accelerator/pe.sv \
+    rtl/accelerator/accumulator.sv \
+    rtl/accelerator/relu.sv \
+    rtl/accelerator/controller.sv \
+    rtl/accelerator/systolic_array.sv \
+    rtl/accelerator/accelerator.sv \
+    rtl/soc_top.sv
+
+synth_xilinx -top soc_top -family xc7
+check
+stat
+write_verilog -noattr sim/soc_top_xc7_netlist.v
