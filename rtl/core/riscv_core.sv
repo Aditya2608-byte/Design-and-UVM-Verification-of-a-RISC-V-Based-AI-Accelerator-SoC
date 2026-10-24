@@ -369,26 +369,21 @@ end
     branch_op_a = rdata1;
     branch_op_b = rdata2;
 
-    // Forward ALU result from EX/MEM.
+    // Forward ALU result from EX/MEM (takes priority over MEM/WB).
     // Do not forward EX/MEM for a load because the load data is not
     // available until the MEM/WB stage.
     if (ex_mem_reg_write && !ex_mem_mem_read &&
         (ex_mem_rd != 5'd0) && (ex_mem_rd == rs1)) begin
       branch_op_a = ex_mem_alu_res;
+    end else if (mem_wb_reg_write &&
+        (mem_wb_rd != 5'd0) && (mem_wb_rd == rs1)) begin
+      branch_op_a = wb_data;
     end
 
     if (ex_mem_reg_write && !ex_mem_mem_read &&
         (ex_mem_rd != 5'd0) && (ex_mem_rd == rs2)) begin
       branch_op_b = ex_mem_alu_res;
-    end
-
-    // Forward the final WB value.
-    if (mem_wb_reg_write &&
-        (mem_wb_rd != 5'd0) && (mem_wb_rd == rs1)) begin
-      branch_op_a = wb_data;
-    end
-
-    if (mem_wb_reg_write &&
+    end else if (mem_wb_reg_write &&
         (mem_wb_rd != 5'd0) && (mem_wb_rd == rs2)) begin
       branch_op_b = wb_data;
     end
@@ -410,24 +405,19 @@ end
     forward_a_data = id_ex_rdata1;
     forward_b_data = id_ex_rdata2;
 
-    // Forward from EX/MEM
+    // Forward from EX/MEM (takes priority over MEM/WB)
     if (ex_mem_reg_write && (ex_mem_rd != 5'd0) &&
         (ex_mem_rd == id_ex_rs1)) begin
       forward_a_data = ex_mem_alu_res;
+    end else if (mem_wb_reg_write && (mem_wb_rd != 5'd0) &&
+        (mem_wb_rd == id_ex_rs1)) begin
+      forward_a_data = wb_data;
     end
 
     if (ex_mem_reg_write && (ex_mem_rd != 5'd0) &&
         (ex_mem_rd == id_ex_rs2)) begin
       forward_b_data = ex_mem_alu_res;
-    end 
-
-    // Forward from MEM/WB
-    if (mem_wb_reg_write && (mem_wb_rd != 5'd0) &&
-        (mem_wb_rd == id_ex_rs1)) begin
-      forward_a_data = wb_data;
-    end
-
-    if (mem_wb_reg_write && (mem_wb_rd != 5'd0) &&
+    end else if (mem_wb_reg_write && (mem_wb_rd != 5'd0) &&
         (mem_wb_rd == id_ex_rs2)) begin
       forward_b_data = wb_data;
     end

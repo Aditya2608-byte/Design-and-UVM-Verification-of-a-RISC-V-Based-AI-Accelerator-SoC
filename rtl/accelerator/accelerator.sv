@@ -54,6 +54,7 @@ module ai_accelerator #(
     logic [31:0] reg_addr_b;
     logic [31:0] reg_addr_c;
     logic        reg_start_pulse;
+    logic        status_done_reg;
 
     // Controller signals
     logic        ctrl_start;
@@ -76,7 +77,7 @@ module ai_accelerator #(
     assign busy  = ctrl_busy;
     assign done  = ctrl_done;
     assign error = ctrl_error;
-    assign irq   = ctrl_done;
+    assign irq   = ctrl_done | status_done_reg;
 
     // Start signal is active either via direct hardware port or register write
     assign ctrl_start = start | reg_start_pulse;
@@ -91,6 +92,7 @@ module ai_accelerator #(
             reg_addr_b        <= 32'h0000_0000;
             reg_addr_c        <= 32'h0000_0000;
             reg_start_pulse   <= 1'b0;
+            status_done_reg   <= 1'b0;
             act_en_reg        <= 1'b0;
             use_mmio_operands <= 1'b0;
             for (r_init = 0; r_init < MATRIX_SIZE; r_init = r_init + 1) begin
@@ -101,14 +103,25 @@ module ai_accelerator #(
             end
         end else begin
             reg_start_pulse <= 1'b0; // Single cycle pulse
+            if (ctrl_start) begin
+                status_done_reg <= 1'b0;
+            end else if (ctrl_done) begin
+                status_done_reg <= 1'b1;
+            end
             if (reg_we) begin
                 case (reg_addr)
                     REG_CTRL: begin
                         if (reg_wdata[CTRL_START_BIT]) begin
                             reg_start_pulse <= 1'b1;
+                            status_done_reg <= 1'b0;
                         end
                         if (reg_wdata[CTRL_ACT_EN_BIT]) begin
                             act_en_reg <= 1'b1;
+                        end
+                    end
+                    REG_STATUS: begin
+                        if (reg_wdata[STATUS_DONE_BIT]) begin
+                            status_done_reg <= 1'b0;
                         end
                     end
                     REG_CFG_ACT: act_en_reg <= reg_wdata[CFG_ACT_RELU_BIT];
@@ -192,7 +205,7 @@ module ai_accelerator #(
         end else begin
             case (reg_addr)
                 REG_CTRL:        reg_rdata = {30'd0, act_en_reg, ctrl_start};
-                REG_STATUS:      reg_rdata = {29'd0, ctrl_error, ctrl_busy, ctrl_done};
+                REG_STATUS:      reg_rdata = {29'd0, ctrl_error, ctrl_busy, (ctrl_done | status_done_reg)};
                 REG_CFG_SIZE:    reg_rdata = 32'(MATRIX_SIZE);
                 REG_CFG_K:       reg_rdata = 32'(MATRIX_SIZE);
                 REG_ADDR_A:      reg_rdata = reg_addr_a;
