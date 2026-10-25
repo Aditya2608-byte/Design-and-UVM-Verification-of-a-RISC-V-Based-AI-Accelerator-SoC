@@ -5,6 +5,19 @@ sim/
 *.log
 __pycache__/
 *.pyc
+transcript
+
+# Quartus temporary databases
+db/
+incremental_db/
+work/
+work_msim/
 
 # Keep wave dumps
 !waves/*.vcd
+
+# Keep bitstreams and synthesis reports
+!output_files/*.sof
+!output_files/*.pof
+!output_files/*.rpt
+!output_files/*.summary

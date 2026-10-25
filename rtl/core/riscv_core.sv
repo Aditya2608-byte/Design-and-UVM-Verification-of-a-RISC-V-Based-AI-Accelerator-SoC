@@ -134,7 +134,7 @@ logic [1:0]  mem_wb_wb_src_sel;
   // --------------------------------------------------------------------------
   // 1. Instruction Fetch (IF Stage)
   // --------------------------------------------------------------------------
-  assign instr_addr = pc_reg;
+  assign instr_addr = (!rst_n) ? RESET_ADDR : (pipeline_stall ? pc_reg : pc_next);
   assign instr      = instr_rdata;
   assign pc_plus4   = pc_reg + 32'd4;
 
@@ -359,7 +359,9 @@ end
     .ex_mem_rd       (ex_mem_rd),
     .if_id_rs1       (rs1),
     .if_id_rs2       (rs2),
-    .stall            (pipeline_stall)
+    .if_id_branch    (branch),
+    .id_ex_reg_write (id_ex_reg_write),
+    .stall           (pipeline_stall)
   );
 
   // --------------------------------------------------------------------------
@@ -395,7 +397,7 @@ end
     .op_b         (branch_op_b),
     .branch_taken (branch_taken)
   );
-  assign branch_flush = branch && branch_taken;
+  assign branch_flush = branch && branch_taken && !pipeline_stall;
   assign jump_flush = jump;
 
   // --------------------------------------------------------------------------
@@ -405,8 +407,9 @@ end
     forward_a_data = id_ex_rdata1;
     forward_b_data = id_ex_rdata2;
 
-    // Forward from EX/MEM (takes priority over MEM/WB)
-    if (ex_mem_reg_write && (ex_mem_rd != 5'd0) &&
+    // Forward from EX/MEM (takes priority over MEM/WB).
+    // Do not forward from EX/MEM if instruction in EX/MEM is a load.
+    if (ex_mem_reg_write && !ex_mem_mem_read && (ex_mem_rd != 5'd0) &&
         (ex_mem_rd == id_ex_rs1)) begin
       forward_a_data = ex_mem_alu_res;
     end else if (mem_wb_reg_write && (mem_wb_rd != 5'd0) &&
@@ -414,7 +417,7 @@ end
       forward_a_data = wb_data;
     end
 
-    if (ex_mem_reg_write && (ex_mem_rd != 5'd0) &&
+    if (ex_mem_reg_write && !ex_mem_mem_read && (ex_mem_rd != 5'd0) &&
         (ex_mem_rd == id_ex_rs2)) begin
       forward_b_data = ex_mem_alu_res;
     end else if (mem_wb_reg_write && (mem_wb_rd != 5'd0) &&

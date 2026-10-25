@@ -85,8 +85,7 @@ module ai_accelerator #(
     // =========================================================================
     // Memory-Mapped CSR Register Logic
     // =========================================================================
-    integer r_init, c_init;
-    always_ff @(posedge clk or negedge rst_n) begin
+        always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             reg_addr_a        <= 32'h0000_0000;
             reg_addr_b        <= 32'h0000_0000;
@@ -95,8 +94,8 @@ module ai_accelerator #(
             status_done_reg   <= 1'b0;
             act_en_reg        <= 1'b0;
             use_mmio_operands <= 1'b0;
-            for (r_init = 0; r_init < MATRIX_SIZE; r_init = r_init + 1) begin
-                for (c_init = 0; c_init < MATRIX_SIZE; c_init = c_init + 1) begin
+            for (int r_init = 0; r_init < MATRIX_SIZE; r_init = r_init + 1) begin
+                for (int c_init = 0; c_init < MATRIX_SIZE; c_init = c_init + 1) begin
                     mmio_a[r_init][c_init] <= '0;
                     mmio_b[r_init][c_init] <= '0;
                 end
@@ -228,18 +227,17 @@ module ai_accelerator #(
     // =========================================================================
     // Input Matrix Operand Latching
     // =========================================================================
-    integer r_idx, c_idx;
-    always_ff @(posedge clk or negedge rst_n) begin
+        always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
-            for (r_idx = 0; r_idx < MATRIX_SIZE; r_idx = r_idx + 1) begin
-                for (c_idx = 0; c_idx < MATRIX_SIZE; c_idx = c_idx + 1) begin
+            for (int r_idx = 0; r_idx < MATRIX_SIZE; r_idx = r_idx + 1) begin
+                for (int c_idx = 0; c_idx < MATRIX_SIZE; c_idx = c_idx + 1) begin
                     a_reg[r_idx][c_idx] <= '0;
                     b_reg[r_idx][c_idx] <= '0;
                 end
             end
         end else if (load_en) begin
-            for (r_idx = 0; r_idx < MATRIX_SIZE; r_idx = r_idx + 1) begin
-                for (c_idx = 0; c_idx < MATRIX_SIZE; c_idx = c_idx + 1) begin
+            for (int r_idx = 0; r_idx < MATRIX_SIZE; r_idx = r_idx + 1) begin
+                for (int c_idx = 0; c_idx < MATRIX_SIZE; c_idx = c_idx + 1) begin
                     if (use_mmio_operands) begin
                         a_reg[r_idx][c_idx] <= mmio_a[r_idx][c_idx];
                         b_reg[r_idx][c_idx] <= mmio_b[r_idx][c_idx];

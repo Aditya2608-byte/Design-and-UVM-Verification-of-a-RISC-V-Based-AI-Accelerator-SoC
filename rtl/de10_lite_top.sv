@@ -22,7 +22,7 @@
 `timescale 1ns/1ps
 
 module de10_lite_top #(
-    parameter INIT_FILE = "sim/firmware.hex"
+    parameter INIT_FILE = "firmware.mif"
 )(
     // 50 MHz Onboard Clock
     input  logic        MAX10_CLK1_50,

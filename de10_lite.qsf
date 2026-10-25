@@ -1,3 +1,6 @@
+set_global_assignment -name NUM_PARALLEL_PROCESSORS 12
+set_global_assignment -name VERILOG_MACRO "SYNTHESIS=1"
+set_global_assignment -name MIF_FILE firmware.mif
 # ==============================================================================
 # File: de10_lite.qsf
 # Target Board: Terasic DE10-Lite
@@ -9,7 +12,7 @@ set_global_assignment -name FAMILY "MAX 10"
 set_global_assignment -name DEVICE 10M50DAF484C7G
 set_global_assignment -name TOP_LEVEL_ENTITY de10_lite_top
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 20.1.1
-set_global_assignment -name LAST_QUARTUS_VERSION "20.1.1 Lite Edition"
+set_global_assignment -name LAST_QUARTUS_VERSION "25.1std.0 Lite Edition"
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
@@ -192,3 +195,6 @@ set_location_assignment PIN_N18 -to HEX5[3]
 set_location_assignment PIN_M20 -to HEX5[4]
 set_location_assignment PIN_N19 -to HEX5[5]
 set_location_assignment PIN_N20 -to HEX5[6]
+
+set_global_assignment -name INTERNAL_FLASH_UPDATE_MODE "SINGLE IMAGE WITH ERAM"
+set_global_assignment -name MAX10FPGA_CONFIGURATION_SCHEME "INTERNAL CONFIGURATION"
