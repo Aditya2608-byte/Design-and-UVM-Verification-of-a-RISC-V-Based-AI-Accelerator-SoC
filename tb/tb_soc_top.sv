@@ -63,9 +63,9 @@ module tb_soc_top;
         else        cycle_count <= cycle_count + 1;
     end
 
-    // Trace first 80 cycles
+    // Trace execution up to completion
     always @(posedge clk) begin
-        if (rst_n && cycle_count < 80) begin
+        if (rst_n && cycle_count < 95) begin
             $display("[CYCLE %2d] PC: 0x%08h | MemReq: %b Addr: 0x%08h WData: 0x%08h | AccDone: %b", 
                      cycle_count, dbg_pc, dbg_data_req, dbg_data_addr, dbg_data_wdata, accel_done);
         end
