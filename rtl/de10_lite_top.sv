@@ -51,14 +51,36 @@ module de10_lite_top #(
     logic clk;
     logic rst_n;
 
-    assign clk   = MAX10_CLK1_50;
     assign rst_n = KEY[0]; // Pushbutton KEY[0] is active-low (0 when pressed)
+
+    // ------------------------------------------------------------------------
+    // Safe 5 MHz SoC Core Clock Generation (50 MHz / 10 = 5 MHz, period = 200 ns)
+    // Guarantees timing closure across the 32-bit LPM_DIVIDE combinational unit
+    // ------------------------------------------------------------------------
+    logic [2:0] clk_div_cnt;
+    logic       soc_clk;
+
+    always_ff @(posedge MAX10_CLK1_50 or negedge rst_n) begin
+        if (!rst_n) begin
+            clk_div_cnt <= 3'd0;
+            soc_clk     <= 1'b0;
+        end else begin
+            if (clk_div_cnt == 3'd4) begin
+                clk_div_cnt <= 3'd0;
+                soc_clk     <= ~soc_clk;
+            end else begin
+                clk_div_cnt <= clk_div_cnt + 1'b1;
+            end
+        end
+    end
+
+    assign clk = soc_clk;
 
     // ------------------------------------------------------------------------
     // Heartbeat Counter (1.5 Hz blink from 50 MHz clock)
     // ------------------------------------------------------------------------
     logic [25:0] hb_counter;
-    always_ff @(posedge clk or negedge rst_n) begin
+    always_ff @(posedge MAX10_CLK1_50 or negedge rst_n) begin
         if (!rst_n) begin
             hb_counter <= 26'd0;
         end else begin

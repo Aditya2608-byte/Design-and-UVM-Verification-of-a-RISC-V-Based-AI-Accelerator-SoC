@@ -1,5 +1,5 @@
 Analysis & Synthesis report for de10_lite
-Mon Oct 26 00:49:09 2026
+Mon Oct 26 01:31:38 2026
 Quartus Prime Version 25.1std.0 Build 1129 10/21/2025 SC Lite Edition
 
 
@@ -136,15 +136,15 @@ on the Quartus Prime software download page.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Mon Oct 26 00:49:09 2026           ;
+; Analysis & Synthesis Status        ; Successful - Mon Oct 26 01:31:38 2026           ;
 ; Quartus Prime Version              ; 25.1std.0 Build 1129 10/21/2025 SC Lite Edition ;
 ; Revision Name                      ; de10_lite                                       ;
 ; Top-level Entity Name              ; de10_lite_top                                   ;
 ; Family                             ; MAX 10                                          ;
-; Total logic elements               ; 12,100                                          ;
-;     Total combinational functions  ; 10,586                                          ;
-;     Dedicated logic registers      ; 3,224                                           ;
-; Total registers                    ; 3224                                            ;
+; Total logic elements               ; 12,105                                          ;
+;     Total combinational functions  ; 10,591                                          ;
+;     Dedicated logic registers      ; 3,228                                           ;
+; Total registers                    ; 3228                                            ;
 ; Total pins                         ; 65                                              ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 131,072                                         ;
@@ -328,37 +328,37 @@ on the Quartus Prime software download page.
 +------------------------------------+-----------------+----------------------------------+------------------------------------------------------------------------------+---------+
 
 
-+-------------------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary                       ;
-+---------------------------------------------+---------------------+
-; Resource                                    ; Usage               ;
-+---------------------------------------------+---------------------+
-; Estimated Total logic elements              ; 12,100              ;
-;                                             ;                     ;
-; Total combinational functions               ; 10586               ;
-; Logic element usage by number of LUT inputs ;                     ;
-;     -- 4 input functions                    ; 6283                ;
-;     -- 3 input functions                    ; 3614                ;
-;     -- <=2 input functions                  ; 689                 ;
-;                                             ;                     ;
-; Logic elements by mode                      ;                     ;
-;     -- normal mode                          ; 7371                ;
-;     -- arithmetic mode                      ; 3215                ;
-;                                             ;                     ;
-; Total registers                             ; 3224                ;
-;     -- Dedicated logic registers            ; 3224                ;
-;     -- I/O registers                        ; 0                   ;
-;                                             ;                     ;
-; I/O pins                                    ; 65                  ;
-; Total memory bits                           ; 131072              ;
-;                                             ;                     ;
-; Embedded Multiplier 9-bit elements          ; 40                  ;
-;                                             ;                     ;
-; Maximum fan-out node                        ; MAX10_CLK1_50~input ;
-; Maximum fan-out                             ; 3256                ;
-; Total fan-out                               ; 52027               ;
-; Average fan-out                             ; 3.71                ;
-+---------------------------------------------+---------------------+
++------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                ;
++---------------------------------------------+--------------+
+; Resource                                    ; Usage        ;
++---------------------------------------------+--------------+
+; Estimated Total logic elements              ; 12,105       ;
+;                                             ;              ;
+; Total combinational functions               ; 10591        ;
+; Logic element usage by number of LUT inputs ;              ;
+;     -- 4 input functions                    ; 6291         ;
+;     -- 3 input functions                    ; 3613         ;
+;     -- <=2 input functions                  ; 687          ;
+;                                             ;              ;
+; Logic elements by mode                      ;              ;
+;     -- normal mode                          ; 7376         ;
+;     -- arithmetic mode                      ; 3215         ;
+;                                             ;              ;
+; Total registers                             ; 3228         ;
+;     -- Dedicated logic registers            ; 3228         ;
+;     -- I/O registers                        ; 0            ;
+;                                             ;              ;
+; I/O pins                                    ; 65           ;
+; Total memory bits                           ; 131072       ;
+;                                             ;              ;
+; Embedded Multiplier 9-bit elements          ; 40           ;
+;                                             ;              ;
+; Maximum fan-out node                        ; KEY[0]~input ;
+; Maximum fan-out                             ; 3244         ;
+; Total fan-out                               ; 52064        ;
+; Average fan-out                             ; 3.71         ;
++---------------------------------------------+--------------+
 
 
 +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -366,20 +366,20 @@ on the Quartus Prime software download page.
 +-------------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
 ; Compilation Hierarchy Node                      ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name                                                                                                                                                                  ; Entity Name         ; Library Name ;
 +-------------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
-; |de10_lite_top                                  ; 10586 (87)          ; 3224 (57)                 ; 131072      ; 0          ; 40           ; 16      ; 12        ; 65   ; 0            ; 0          ; |de10_lite_top                                                                                                                                                                       ; de10_lite_top       ; work         ;
+; |de10_lite_top                                  ; 10591 (91)          ; 3228 (61)                 ; 131072      ; 0          ; 40           ; 16      ; 12        ; 65   ; 0            ; 0          ; |de10_lite_top                                                                                                                                                                       ; de10_lite_top       ; work         ;
 ;    |hex_digit_decoder:u_hex0|                   ; 7 (7)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite_top|hex_digit_decoder:u_hex0                                                                                                                                              ; hex_digit_decoder   ; work         ;
 ;    |hex_digit_decoder:u_hex1|                   ; 7 (7)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite_top|hex_digit_decoder:u_hex1                                                                                                                                              ; hex_digit_decoder   ; work         ;
 ;    |hex_digit_decoder:u_hex2|                   ; 7 (7)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite_top|hex_digit_decoder:u_hex2                                                                                                                                              ; hex_digit_decoder   ; work         ;
 ;    |hex_digit_decoder:u_hex3|                   ; 7 (7)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite_top|hex_digit_decoder:u_hex3                                                                                                                                              ; hex_digit_decoder   ; work         ;
 ;    |hex_digit_decoder:u_hex4|                   ; 7 (7)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite_top|hex_digit_decoder:u_hex4                                                                                                                                              ; hex_digit_decoder   ; work         ;
 ;    |hex_digit_decoder:u_hex5|                   ; 7 (7)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite_top|hex_digit_decoder:u_hex5                                                                                                                                              ; hex_digit_decoder   ; work         ;
-;    |soc_top:u_soc_top|                          ; 10457 (0)           ; 3167 (0)                  ; 131072      ; 0          ; 40           ; 16      ; 12        ; 0    ; 0            ; 0          ; |de10_lite_top|soc_top:u_soc_top                                                                                                                                                     ; soc_top             ; work         ;
+;    |soc_top:u_soc_top|                          ; 10458 (0)           ; 3167 (0)                  ; 131072      ; 0          ; 40           ; 16      ; 12        ; 0    ; 0            ; 0          ; |de10_lite_top|soc_top:u_soc_top                                                                                                                                                     ; soc_top             ; work         ;
 ;       |ai_accelerator:u_ai_accelerator|         ; 1525 (358)          ; 1644 (612)                ; 0           ; 0          ; 16           ; 16      ; 0         ; 0    ; 0            ; 0          ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator                                                                                                                     ; ai_accelerator      ; work         ;
 ;          |accumulator:u_accumulator|            ; 513 (513)           ; 512 (512)                 ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|accumulator:u_accumulator                                                                                           ; accumulator         ; work         ;
 ;          |controller:u_controller|              ; 13 (13)             ; 8 (8)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|controller:u_controller                                                                                             ; controller          ; work         ;
 ;          |systolic_array:u_systolic_array|      ; 641 (128)           ; 512 (0)                   ; 0           ; 0          ; 16           ; 16      ; 0         ; 0    ; 0            ; 0          ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|systolic_array:u_systolic_array                                                                                     ; systolic_array      ; work         ;
-;             |pe:pe_row[0].pe_col[0].u_pe|       ; 32 (0)              ; 32 (0)                    ; 0           ; 0          ; 1            ; 1       ; 0         ; 0    ; 0            ; 0          ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|systolic_array:u_systolic_array|pe:pe_row[0].pe_col[0].u_pe                                                         ; pe                  ; work         ;
-;                |mac:u_mac|                      ; 32 (32)             ; 32 (32)                   ; 0           ; 0          ; 1            ; 1       ; 0         ; 0    ; 0            ; 0          ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|systolic_array:u_systolic_array|pe:pe_row[0].pe_col[0].u_pe|mac:u_mac                                               ; mac                 ; work         ;
+;             |pe:pe_row[0].pe_col[0].u_pe|       ; 33 (0)              ; 32 (0)                    ; 0           ; 0          ; 1            ; 1       ; 0         ; 0    ; 0            ; 0          ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|systolic_array:u_systolic_array|pe:pe_row[0].pe_col[0].u_pe                                                         ; pe                  ; work         ;
+;                |mac:u_mac|                      ; 33 (33)             ; 32 (32)                   ; 0           ; 0          ; 1            ; 1       ; 0         ; 0    ; 0            ; 0          ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|systolic_array:u_systolic_array|pe:pe_row[0].pe_col[0].u_pe|mac:u_mac                                               ; mac                 ; work         ;
 ;                   |lpm_mult:Mult0|              ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 1            ; 1       ; 0         ; 0    ; 0            ; 0          ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|systolic_array:u_systolic_array|pe:pe_row[0].pe_col[0].u_pe|mac:u_mac|lpm_mult:Mult0                                ; lpm_mult            ; work         ;
 ;                      |mult_tds:auto_generated|  ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 1            ; 1       ; 0         ; 0    ; 0            ; 0          ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|systolic_array:u_systolic_array|pe:pe_row[0].pe_col[0].u_pe|mac:u_mac|lpm_mult:Mult0|mult_tds:auto_generated        ; mult_tds            ; work         ;
 ;             |pe:pe_row[0].pe_col[1].u_pe|       ; 32 (0)              ; 32 (0)                    ; 0           ; 0          ; 1            ; 1       ; 0         ; 0    ; 0            ; 0          ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|systolic_array:u_systolic_array|pe:pe_row[0].pe_col[1].u_pe                                                         ; pe                  ; work         ;
@@ -406,8 +406,8 @@ on the Quartus Prime software download page.
 ;                |mac:u_mac|                      ; 32 (32)             ; 32 (32)                   ; 0           ; 0          ; 1            ; 1       ; 0         ; 0    ; 0            ; 0          ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|systolic_array:u_systolic_array|pe:pe_row[1].pe_col[2].u_pe|mac:u_mac                                               ; mac                 ; work         ;
 ;                   |lpm_mult:Mult0|              ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 1            ; 1       ; 0         ; 0    ; 0            ; 0          ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|systolic_array:u_systolic_array|pe:pe_row[1].pe_col[2].u_pe|mac:u_mac|lpm_mult:Mult0                                ; lpm_mult            ; work         ;
 ;                      |mult_tds:auto_generated|  ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 1            ; 1       ; 0         ; 0    ; 0            ; 0          ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|systolic_array:u_systolic_array|pe:pe_row[1].pe_col[2].u_pe|mac:u_mac|lpm_mult:Mult0|mult_tds:auto_generated        ; mult_tds            ; work         ;
-;             |pe:pe_row[1].pe_col[3].u_pe|       ; 33 (0)              ; 32 (0)                    ; 0           ; 0          ; 1            ; 1       ; 0         ; 0    ; 0            ; 0          ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|systolic_array:u_systolic_array|pe:pe_row[1].pe_col[3].u_pe                                                         ; pe                  ; work         ;
-;                |mac:u_mac|                      ; 33 (33)             ; 32 (32)                   ; 0           ; 0          ; 1            ; 1       ; 0         ; 0    ; 0            ; 0          ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|systolic_array:u_systolic_array|pe:pe_row[1].pe_col[3].u_pe|mac:u_mac                                               ; mac                 ; work         ;
+;             |pe:pe_row[1].pe_col[3].u_pe|       ; 32 (0)              ; 32 (0)                    ; 0           ; 0          ; 1            ; 1       ; 0         ; 0    ; 0            ; 0          ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|systolic_array:u_systolic_array|pe:pe_row[1].pe_col[3].u_pe                                                         ; pe                  ; work         ;
+;                |mac:u_mac|                      ; 32 (32)             ; 32 (32)                   ; 0           ; 0          ; 1            ; 1       ; 0         ; 0    ; 0            ; 0          ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|systolic_array:u_systolic_array|pe:pe_row[1].pe_col[3].u_pe|mac:u_mac                                               ; mac                 ; work         ;
 ;                   |lpm_mult:Mult0|              ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 1            ; 1       ; 0         ; 0    ; 0            ; 0          ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|systolic_array:u_systolic_array|pe:pe_row[1].pe_col[3].u_pe|mac:u_mac|lpm_mult:Mult0                                ; lpm_mult            ; work         ;
 ;                      |mult_tds:auto_generated|  ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 1            ; 1       ; 0         ; 0    ; 0            ; 0          ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|systolic_array:u_systolic_array|pe:pe_row[1].pe_col[3].u_pe|mac:u_mac|lpm_mult:Mult0|mult_tds:auto_generated        ; mult_tds            ; work         ;
 ;             |pe:pe_row[2].pe_col[0].u_pe|       ; 32 (0)              ; 32 (0)                    ; 0           ; 0          ; 1            ; 1       ; 0         ; 0    ; 0            ; 0          ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|systolic_array:u_systolic_array|pe:pe_row[2].pe_col[0].u_pe                                                         ; pe                  ; work         ;
@@ -442,8 +442,8 @@ on the Quartus Prime software download page.
 ;                |mac:u_mac|                      ; 32 (32)             ; 32 (32)                   ; 0           ; 0          ; 1            ; 1       ; 0         ; 0    ; 0            ; 0          ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|systolic_array:u_systolic_array|pe:pe_row[3].pe_col[3].u_pe|mac:u_mac                                               ; mac                 ; work         ;
 ;                   |lpm_mult:Mult0|              ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 1            ; 1       ; 0         ; 0    ; 0            ; 0          ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|systolic_array:u_systolic_array|pe:pe_row[3].pe_col[3].u_pe|mac:u_mac|lpm_mult:Mult0                                ; lpm_mult            ; work         ;
 ;                      |mult_tds:auto_generated|  ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 1            ; 1       ; 0         ; 0    ; 0            ; 0          ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|systolic_array:u_systolic_array|pe:pe_row[3].pe_col[3].u_pe|mac:u_mac|lpm_mult:Mult0|mult_tds:auto_generated        ; mult_tds            ; work         ;
-;       |riscv_core:u_riscv_core|                 ; 8426 (848)          ; 1523 (531)                ; 0           ; 0          ; 24           ; 0       ; 12        ; 0    ; 0            ; 0          ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core                                                                                                                             ; riscv_core          ; work         ;
-;          |alu:u_alu|                            ; 5831 (1089)         ; 0 (0)                     ; 0           ; 0          ; 24           ; 0       ; 12        ; 0    ; 0            ; 0          ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|alu:u_alu                                                                                                                   ; alu                 ; work         ;
+;       |riscv_core:u_riscv_core|                 ; 8427 (848)          ; 1523 (531)                ; 0           ; 0          ; 24           ; 0       ; 12        ; 0    ; 0            ; 0          ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core                                                                                                                             ; riscv_core          ; work         ;
+;          |alu:u_alu|                            ; 5832 (1090)         ; 0 (0)                     ; 0           ; 0          ; 24           ; 0       ; 12        ; 0    ; 0            ; 0          ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|alu:u_alu                                                                                                                   ; alu                 ; work         ;
 ;             |lpm_divide:Div0|                   ; 1081 (0)            ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|alu:u_alu|lpm_divide:Div0                                                                                                   ; lpm_divide          ; work         ;
 ;                |lpm_divide_vco:auto_generated|  ; 1081 (0)            ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|alu:u_alu|lpm_divide:Div0|lpm_divide_vco:auto_generated                                                                     ; lpm_divide_vco      ; work         ;
 ;                   |abs_divider_4dg:divider|     ; 1081 (33)           ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|alu:u_alu|lpm_divide:Div0|lpm_divide_vco:auto_generated|abs_divider_4dg:divider                                             ; abs_divider_4dg     ; work         ;
@@ -576,76 +576,76 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 3224  ;
+; Total registers                              ; 3228  ;
 ; Number of registers using Synchronous Clear  ; 546   ;
 ; Number of registers using Synchronous Load   ; 16    ;
-; Number of registers using Asynchronous Clear ; 3224  ;
+; Number of registers using Asynchronous Clear ; 3228  ;
 ; Number of registers using Asynchronous Load  ; 0     ;
 ; Number of registers using Clock Enable       ; 2967  ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                                                                               ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                                                     ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------------------------------------------------------------------+
-; 3:1                ; 512 bits  ; 1024 LEs      ; 512 LEs              ; 512 LEs                ; Yes        ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|systolic_array:u_systolic_array|pe:pe_row[1].pe_col[3].u_pe|mac:u_mac|acc[16] ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; Yes        ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|mem_wb_load_data[24]                                                                  ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|pc_reg[29]                                                                            ;
-; 3:1                ; 96 bits   ; 192 LEs       ; 96 LEs               ; 96 LEs                 ; Yes        ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|if_id_pc[4]                                                                           ;
-; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|mem_wb_load_data[8]                                                                   ;
-; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|accumulator:u_accumulator|mem[3][0][5]                                        ;
-; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|accumulator:u_accumulator|mem[3][1][1]                                        ;
-; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|accumulator:u_accumulator|mem[3][2][3]                                        ;
-; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|accumulator:u_accumulator|mem[3][3][2]                                        ;
-; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|accumulator:u_accumulator|mem[2][0][29]                                       ;
-; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|accumulator:u_accumulator|mem[2][1][27]                                       ;
-; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|accumulator:u_accumulator|mem[2][2][18]                                       ;
-; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|accumulator:u_accumulator|mem[2][3][2]                                        ;
-; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|accumulator:u_accumulator|mem[1][0][31]                                       ;
-; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|accumulator:u_accumulator|mem[1][1][5]                                        ;
-; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|accumulator:u_accumulator|mem[1][2][4]                                        ;
-; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|accumulator:u_accumulator|mem[1][3][26]                                       ;
-; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|accumulator:u_accumulator|mem[0][0][21]                                       ;
-; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|accumulator:u_accumulator|mem[0][1][16]                                       ;
-; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|accumulator:u_accumulator|mem[0][2][25]                                       ;
-; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|accumulator:u_accumulator|mem[0][3][4]                                        ;
-; 6:1                ; 2 bits    ; 8 LEs         ; 2 LEs                ; 6 LEs                  ; Yes        ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|controller:u_controller|step_cnt_reg[0]                                       ;
-; 32:1               ; 4 bits    ; 84 LEs        ; 84 LEs               ; 0 LEs                  ; Yes        ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|mem_wb_load_data[3]                                                                   ;
-; 4:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|Mux25                                                                                 ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|forward_b_data[15]                                                                    ;
-; 3:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|imm_gen:u_imm_gen|Selector10                                                          ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|imm_gen:u_imm_gen|Selector0                                                           ;
-; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|imm_gen:u_imm_gen|Selector0                                                           ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|branch_op_a[18]                                                                       ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|branch_op_b[6]                                                                        ;
-; 3:1                ; 12 bits   ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|instr_addr[4]                                                                         ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 128 LEs              ; 0 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|systolic_array:u_systolic_array|Mux222                                        ;
-; 3:1                ; 23 bits   ; 46 LEs        ; 46 LEs               ; 0 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|pc_next[1]                                                                            ;
-; 4:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|alu_op_a[28]                                                                          ;
-; 4:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|jalr_base[4]                                                                          ;
-; 4:1                ; 12 bits   ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; No         ; |de10_lite_top|upper_word[0]                                                                                                                   ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|load_store_unit:u_lsu|Mux1                                                            ;
-; 10:1               ; 8 bits    ; 48 LEs        ; 32 LEs               ; 16 LEs                 ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|load_store_unit:u_lsu|Mux5                                                            ;
-; 10:1               ; 8 bits    ; 48 LEs        ; 24 LEs               ; 24 LEs                 ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|load_store_unit:u_lsu|Mux15                                                           ;
-; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|load_store_unit:u_lsu|Mux25                                                           ;
-; 10:1               ; 8 bits    ; 48 LEs        ; 8 LEs                ; 40 LEs                 ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|load_store_unit:u_lsu|Mux28                                                           ;
-; 7:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|imm_gen:u_imm_gen|Selector2                                                           ;
-; 34:1               ; 32 bits   ; 704 LEs       ; 704 LEs              ; 0 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|register_file:u_regfile|rdata1[30]                                                    ;
-; 34:1               ; 32 bits   ; 704 LEs       ; 704 LEs              ; 0 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|register_file:u_regfile|rdata2[16]                                                    ;
-; 7:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|controller:u_controller|Selector3                                             ;
-; 9:1                ; 8 bits    ; 48 LEs        ; 24 LEs               ; 24 LEs                 ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|imm_gen:u_imm_gen|Selector17                                                          ;
-; 11:1               ; 4 bits    ; 28 LEs        ; 16 LEs               ; 12 LEs                 ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|imm_gen:u_imm_gen|Selector20                                                          ;
-; 29:1               ; 25 bits   ; 475 LEs       ; 475 LEs              ; 0 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|soc_interconnect:u_interconnect|cpu_data_rdata[30]                                                            ;
-; 29:1               ; 7 bits    ; 133 LEs       ; 126 LEs              ; 7 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|alu:u_alu|Selector11                                                                  ;
-; 28:1               ; 8 bits    ; 144 LEs       ; 144 LEs              ; 0 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|alu:u_alu|Selector23                                                                  ;
-; 30:1               ; 4 bits    ; 80 LEs        ; 76 LEs               ; 4 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|alu:u_alu|Selector4                                                                   ;
-; 29:1               ; 4 bits    ; 76 LEs        ; 72 LEs               ; 4 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|alu:u_alu|Selector24                                                                  ;
-; 31:1               ; 2 bits    ; 40 LEs        ; 40 LEs               ; 0 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|alu:u_alu|Selector2                                                                   ;
-; 30:1               ; 2 bits    ; 40 LEs        ; 38 LEs               ; 2 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|alu:u_alu|Selector29                                                                  ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------------------------------------------------------------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                                                                              ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                                                    ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+; 3:1                ; 512 bits  ; 1024 LEs      ; 512 LEs              ; 512 LEs                ; Yes        ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|systolic_array:u_systolic_array|pe:pe_row[0].pe_col[0].u_pe|mac:u_mac|acc[6] ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; Yes        ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|mem_wb_load_data[22]                                                                 ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|pc_reg[26]                                                                           ;
+; 3:1                ; 96 bits   ; 192 LEs       ; 96 LEs               ; 96 LEs                 ; Yes        ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|if_id_pc_plus4[18]                                                                   ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|mem_wb_load_data[8]                                                                  ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|accumulator:u_accumulator|mem[3][0][12]                                      ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|accumulator:u_accumulator|mem[3][1][8]                                       ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|accumulator:u_accumulator|mem[3][2][17]                                      ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|accumulator:u_accumulator|mem[3][3][17]                                      ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|accumulator:u_accumulator|mem[2][0][1]                                       ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|accumulator:u_accumulator|mem[2][1][24]                                      ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|accumulator:u_accumulator|mem[2][2][25]                                      ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|accumulator:u_accumulator|mem[2][3][23]                                      ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|accumulator:u_accumulator|mem[1][0][30]                                      ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|accumulator:u_accumulator|mem[1][1][0]                                       ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|accumulator:u_accumulator|mem[1][2][19]                                      ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|accumulator:u_accumulator|mem[1][3][28]                                      ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|accumulator:u_accumulator|mem[0][0][8]                                       ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|accumulator:u_accumulator|mem[0][1][28]                                      ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|accumulator:u_accumulator|mem[0][2][12]                                      ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|accumulator:u_accumulator|mem[0][3][5]                                       ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 2 LEs                ; 6 LEs                  ; Yes        ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|controller:u_controller|step_cnt_reg[0]                                      ;
+; 32:1               ; 4 bits    ; 84 LEs        ; 84 LEs               ; 0 LEs                  ; Yes        ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|mem_wb_load_data[5]                                                                  ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|Mux14                                                                                ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|forward_b_data[11]                                                                   ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|imm_gen:u_imm_gen|Selector10                                                         ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|imm_gen:u_imm_gen|Selector0                                                          ;
+; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|imm_gen:u_imm_gen|Selector0                                                          ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|branch_op_a[9]                                                                       ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|branch_op_b[30]                                                                      ;
+; 3:1                ; 12 bits   ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|instr_addr[9]                                                                        ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 128 LEs              ; 0 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|systolic_array:u_systolic_array|Mux203                                       ;
+; 3:1                ; 23 bits   ; 46 LEs        ; 46 LEs               ; 0 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|pc_next[15]                                                                          ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|alu_op_a[6]                                                                          ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|jalr_base[3]                                                                         ;
+; 4:1                ; 12 bits   ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; No         ; |de10_lite_top|display_word[1]                                                                                                                ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|load_store_unit:u_lsu|Mux3                                                           ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 32 LEs               ; 16 LEs                 ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|load_store_unit:u_lsu|Mux9                                                           ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 24 LEs               ; 24 LEs                 ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|load_store_unit:u_lsu|Mux17                                                          ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|load_store_unit:u_lsu|Mux22                                                          ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 8 LEs                ; 40 LEs                 ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|load_store_unit:u_lsu|Mux35                                                          ;
+; 7:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|imm_gen:u_imm_gen|Selector5                                                          ;
+; 34:1               ; 32 bits   ; 704 LEs       ; 704 LEs              ; 0 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|register_file:u_regfile|rdata1[0]                                                    ;
+; 34:1               ; 32 bits   ; 704 LEs       ; 704 LEs              ; 0 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|register_file:u_regfile|rdata2[25]                                                   ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|ai_accelerator:u_ai_accelerator|controller:u_controller|Selector3                                            ;
+; 9:1                ; 8 bits    ; 48 LEs        ; 24 LEs               ; 24 LEs                 ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|imm_gen:u_imm_gen|Selector15                                                         ;
+; 11:1               ; 4 bits    ; 28 LEs        ; 16 LEs               ; 12 LEs                 ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|imm_gen:u_imm_gen|Selector23                                                         ;
+; 29:1               ; 25 bits   ; 475 LEs       ; 475 LEs              ; 0 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|soc_interconnect:u_interconnect|cpu_data_rdata[28]                                                           ;
+; 29:1               ; 7 bits    ; 133 LEs       ; 126 LEs              ; 7 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|alu:u_alu|Selector12                                                                 ;
+; 28:1               ; 8 bits    ; 144 LEs       ; 144 LEs              ; 0 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|alu:u_alu|Selector20                                                                 ;
+; 30:1               ; 4 bits    ; 80 LEs        ; 76 LEs               ; 4 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|alu:u_alu|Selector5                                                                  ;
+; 29:1               ; 4 bits    ; 76 LEs        ; 72 LEs               ; 4 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|alu:u_alu|Selector27                                                                 ;
+; 31:1               ; 2 bits    ; 40 LEs        ; 40 LEs               ; 0 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|alu:u_alu|Selector2                                                                  ;
+; 30:1               ; 2 bits    ; 40 LEs        ; 38 LEs               ; 2 LEs                  ; No         ; |de10_lite_top|soc_top:u_soc_top|riscv_core:u_riscv_core|alu:u_alu|Selector29                                                                 ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
 
 
 +------------------------------------------------------------------------------------------------------------------+
@@ -2374,29 +2374,29 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 65                          ;
-; cycloneiii_ff         ; 3224                        ;
-;     CLR               ; 223                         ;
+; cycloneiii_ff         ; 3228                        ;
+;     CLR               ; 227                         ;
 ;     CLR SCLR          ; 26                          ;
 ;     CLR SCLR SLD      ; 8                           ;
 ;     ENA CLR           ; 2447                        ;
 ;     ENA CLR SCLR      ; 512                         ;
 ;     ENA CLR SLD       ; 8                           ;
-; cycloneiii_lcell_comb ; 10594                       ;
+; cycloneiii_lcell_comb ; 10599                       ;
 ;     arith             ; 3215                        ;
 ;         2 data inputs ; 114                         ;
 ;         3 data inputs ; 3101                        ;
-;     normal            ; 7379                        ;
+;     normal            ; 7384                        ;
 ;         0 data inputs ; 123                         ;
 ;         1 data inputs ; 14                          ;
-;         2 data inputs ; 446                         ;
-;         3 data inputs ; 513                         ;
-;         4 data inputs ; 6283                        ;
+;         2 data inputs ; 444                         ;
+;         3 data inputs ; 512                         ;
+;         4 data inputs ; 6291                        ;
 ; cycloneiii_mac_mult   ; 28                          ;
 ; cycloneiii_mac_out    ; 28                          ;
 ; cycloneiii_ram_block  ; 32                          ;
 ;                       ;                             ;
 ; Max LUT depth         ; 148.80                      ;
-; Average LUT depth     ; 64.58                       ;
+; Average LUT depth     ; 64.54                       ;
 +-----------------------+-----------------------------+
 
 
@@ -2429,8 +2429,8 @@ Info: Running Quartus Prime Analysis & Synthesis
     Info: Altera and sold by Altera or its authorized distributors.  Please
     Info: refer to the Altera Software License Subscription Agreements 
     Info: on the Quartus Prime software download page.
-    Info: Processing started: Mon Oct 26 00:48:45 2026
-Info: Command: quartus_map de10_lite --read_settings_files=on
+    Info: Processing started: Mon Oct 26 01:31:15 2026
+Info: Command: quartus_map de10_lite
 Info (20032): Parallel compilation is enabled and will use up to 12 processors
 Info (12021): Found 1 design units, including 0 entities, in source file rtl/core/riscv_pkg.sv
     Info (12022): Found design unit 1: riscv_pkg (SystemVerilog) File: P:/risc_V_project/rtl/core/riscv_pkg.sv Line: 6
@@ -2474,9 +2474,9 @@ Info (12021): Found 1 design units, including 1 entities, in source file rtl/soc
     Info (12023): Found entity 1: soc_top File: P:/risc_V_project/rtl/soc_top.sv Line: 16
 Info (12021): Found 2 design units, including 2 entities, in source file rtl/de10_lite_top.sv
     Info (12023): Found entity 1: de10_lite_top File: P:/risc_V_project/rtl/de10_lite_top.sv Line: 24
-    Info (12023): Found entity 2: hex_digit_decoder File: P:/risc_V_project/rtl/de10_lite_top.sv Line: 152
+    Info (12023): Found entity 2: hex_digit_decoder File: P:/risc_V_project/rtl/de10_lite_top.sv Line: 174
 Info (12127): Elaborating entity "de10_lite_top" for the top level hierarchy
-Info (12128): Elaborating entity "soc_top" for hierarchy "soc_top:u_soc_top" File: P:/risc_V_project/rtl/de10_lite_top.sv Line: 110
+Info (12128): Elaborating entity "soc_top" for hierarchy "soc_top:u_soc_top" File: P:/risc_V_project/rtl/de10_lite_top.sv Line: 132
 Warning (10858): Verilog HDL warning at soc_top.sv(67): object dummy_a used but never assigned File: P:/risc_V_project/rtl/soc_top.sv Line: 67
 Warning (10858): Verilog HDL warning at soc_top.sv(68): object dummy_b used but never assigned File: P:/risc_V_project/rtl/soc_top.sv Line: 68
 Warning (10036): Verilog HDL or VHDL warning at soc_top.sv(69): object "direct_c" assigned a value but never read File: P:/risc_V_project/rtl/soc_top.sv Line: 69
@@ -2555,7 +2555,7 @@ Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "mem" into its bus
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "parallel_data_in" into its bus
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "matrix_out" into its bus
-Info (12128): Elaborating entity "hex_digit_decoder" for hierarchy "hex_digit_decoder:u_hex0" File: P:/risc_V_project/rtl/de10_lite_top.sv Line: 135
+Info (12128): Elaborating entity "hex_digit_decoder" for hierarchy "hex_digit_decoder:u_hex0" File: P:/risc_V_project/rtl/de10_lite_top.sv Line: 157
 Info (278001): Inferred 23 megafunctions from design logic
     Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "soc_top:u_soc_top|riscv_core:u_riscv_core|alu:u_alu|Mod1" File: P:/risc_V_project/rtl/core/alu.sv Line: 83
     Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "soc_top:u_soc_top|riscv_core:u_riscv_core|alu:u_alu|Mod0" File: P:/risc_V_project/rtl/core/alu.sv Line: 76
@@ -2700,16 +2700,16 @@ Warning (21074): Design contains 10 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "SW[7]" File: P:/risc_V_project/rtl/de10_lite_top.sv Line: 34
     Warning (15610): No output dependent on input pin "SW[8]" File: P:/risc_V_project/rtl/de10_lite_top.sv Line: 34
     Warning (15610): No output dependent on input pin "SW[9]" File: P:/risc_V_project/rtl/de10_lite_top.sv Line: 34
-Info (21057): Implemented 12471 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 12476 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 13 input pins
     Info (21059): Implemented 52 output pins
-    Info (21061): Implemented 12334 logic cells
+    Info (21061): Implemented 12339 logic cells
     Info (21064): Implemented 32 RAM segments
     Info (21062): Implemented 40 DSP elements
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 25 warnings
-    Info: Peak virtual memory: 4970 megabytes
-    Info: Processing ended: Mon Oct 26 00:49:09 2026
-    Info: Elapsed time: 00:00:24
-    Info: Total CPU time (on all processors): 00:00:35
+    Info: Peak virtual memory: 4996 megabytes
+    Info: Processing ended: Mon Oct 26 01:31:38 2026
+    Info: Elapsed time: 00:00:23
+    Info: Total CPU time (on all processors): 00:00:33
 
 
