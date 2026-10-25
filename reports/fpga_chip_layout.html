@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intel MAX 10 FPGA Silicon Layout & Floorplan Visualizer</title>
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --panel-bg: #1e293b;
+            --border-color: #334155;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-blue: #38bdf8;
+            --accent-orange: #fb923c;
+            --accent-green: #4ade80;
+            --accent-red: #f87171;
+            --accent-purple: #c084fc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        header {
+            background: var(--panel-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .title-group h1 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .badge {
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 9999px;
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--accent-blue);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .sidebar {
+            width: 340px;
+            background: var(--panel-bg);
+            border-right: 1px solid var(--border-color);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            overflow-y: auto;
+        }
+
+        .card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 14px;
+        }
+
+        .card-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            cursor: pointer;
+            padding: 4px 6px;
+            border-radius: 4px;
+            transition: background 0.15s;
+        }
+
+        .legend-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .color-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: 6px;
+        }
+
+        .stat-box {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 8px 10px;
+            border-radius: 6px;
+        }
+
+        .stat-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .stat-label {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+        }
+
+        .btn-launch {
+            background: linear-gradient(135deg, #0284c7, #2563eb);
+            color: white;
+            border: none;
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-launch:hover {
+            filter: brightness(1.15);
+            transform: translateY(-1px);
+        }
+
+        .canvas-area {
+            flex: 1;
+            position: relative;
+            background: #090d16;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .toolbar {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+            background: rgba(30, 41, 59, 0.85);
+            backdrop-filter: blur(8px);
+            padding: 6px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .tool-btn {
+            background: transparent;
+            border: 1px solid transparent;
+            color: var(--text-main);
+            padding: 6px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .tool-btn.active, .tool-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            border-color: rgba(56, 189, 248, 0.4);
+            color: var(--accent-blue);
+        }
+
+        #layoutSvg {
+            width: 100%;
+            height: 100%;
+            cursor: grab;
+        }
+
+        #layoutSvg:active {
+            cursor: grabbing;
+        }
+
+        .tooltip {
+            position: absolute;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(6px);
+            border: 1px solid var(--accent-blue);
+            color: white;
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            pointer-events: none;
+            display: none;
+            z-index: 100;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            max-width: 280px;
+        }
+
+        .tooltip-title {
+            font-weight: 700;
+            color: var(--accent-blue);
+            margin-bottom: 4px;
+            font-size: 0.85rem;
+        }
+
+        .instructions-box {
+            font-size: 0.78rem;
+            line-height: 1.45;
+            color: var(--text-muted);
+        }
+
+        .instructions-box code {
+            background: rgba(0, 0, 0, 0.3);
+            color: #38bdf8;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-size: 0.75rem;
+        }
+
+        .instructions-box ol {
+            padding-left: 18px;
+            margin-top: 6px;
+        }
+        .instructions-box li {
+            margin-bottom: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="title-group">
+            <h1>
+                Intel MAX 10 Die Floorplan & Layout
+                <span class="badge">10M50DAF484C7G</span>
+            </h1>
+            <div class="subtitle">RISC-V RV32IM CPU + 4×4 INT8 Systolic AI Accelerator on Terasic DE10-Lite</div>
+        </div>
+        <div style="font-size: 0.8rem; color: #4ade80; display: flex; align-items: center; gap: 6px;">
+            <span style="width: 8px; height: 8px; border-radius: 50%; background: #4ade80; display: inline-block;"></span>
+            Placed & Routed (Fitter Verified)
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Sidebar Controls & Metrics -->
+        <aside class="sidebar">
+            <div class="card">
+                <div class="card-title">Device Resource Layout</div>
+                <div class="stat-grid">
+                    <div class="stat-box">
+                        <div class="stat-value">10,878</div>
+                        <div class="stat-label">Logic Elements (22%)</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">3,224</div>
+                        <div class="stat-label">Registers (6.5%)</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">16 M9Ks</div>
+                        <div class="stat-label">131,072 RAM Bits</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">40 DSPs</div>
+                        <div class="stat-label">9-bit Multipliers</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Color Legend & Subsystems</div>
+                <div class="legend-item" onclick="highlight('accel')">
+                    <div class="color-dot" style="background: #fb923c;"></div>
+                    <div>
+                        <div style="font-weight: 600;">4×4 Systolic Array (AI)</div>
+                        <div style="font-size: 0.72rem; color: var(--text-muted);">16 PEs + ReLU (7,370 LEs, 32 DSPs)</div>
+                    </div>
+                </div>
+                <div class="legend-item" onclick="highlight('core')">
+                    <div class="color-dot" style="background: #38bdf8;"></div>
+                    <div>
+                        <div style="font-weight: 600;">RISC-V RV32IM Core</div>
+                        <div style="font-size: 0.72rem; color: var(--text-muted);">5-Stage Pipeline, ALU, RegFile (3,420 LEs)</div>
+                    </div>
+                </div>
+                <div class="legend-item" onclick="highlight('ram')">
+                    <div class="color-dot" style="background: #4ade80;"></div>
+                    <div>
+                        <div style="font-weight: 600;">16 KB Synchronous SRAM</div>
+                        <div style="font-size: 0.72rem; color: var(--text-muted);">16 M9K Blocks @ Col X=33 & X=53</div>
+                    </div>
+                </div>
+                <div class="legend-item" onclick="highlight('dsp')">
+                    <div class="color-dot" style="background: #f87171;"></div>
+                    <div>
+                        <div style="font-weight: 600;">Hardware Multipliers (DSP)</div>
+                        <div style="font-size: 0.72rem; color: var(--text-muted);">Dedicated 18-bit Blocks @ Col X=48, X=68</div>
+                    </div>
+                </div>
+                <div class="legend-item" onclick="highlight('io')">
+                    <div class="color-dot" style="background: #c084fc;"></div>
+                    <div>
+                        <div style="font-weight: 600;">DE10-Lite Board I/O & LEDs</div>
+                        <div style="font-size: 0.72rem; color: var(--text-muted);">65 I/O Pins, Decoders & Clock PLL Ring</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Open Native Quartus Layout</div>
+                <div class="instructions-box">
+                    <p>To view the full interactive, gate-level schematic and silicon die in Quartus Prime:</p>
+                    <ol>
+                        <li>Open project: <code>quartus de10_lite.qpf</code></li>
+                        <li><strong>Chip Planner (Physical Silicon):</strong><br>Go to <strong>Tools → Chip Planner</strong> or press <code>Ctrl+Shift+C</code></li>
+                        <li><strong>RTL Viewer (Schematic Diagram):</strong><br>Go to <strong>Tools → Netlist Viewers → RTL Viewer</strong></li>
+                        <li><strong>Pin Planner (Package Pins):</strong><br>Go to <strong>Assignments → Pin Planner</strong> (<code>Ctrl+Shift+N</code>)</li>
+                    </ol>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Interactive Visual Layout Canvas -->
+        <main class="canvas-area">
+            <div class="toolbar">
+                <button class="tool-btn active" id="btnAll" onclick="showAll()">All Layers</button>
+                <button class="tool-btn" id="btnPath" onclick="toggleCriticalPath()">Critical Path Trace</button>
+                <button class="tool-btn" id="btnReset" onclick="resetZoom()">Reset View</button>
+            </div>
+
+            <svg id="layoutSvg" viewBox="0 0 1000 650">
+                <defs>
+                    <linearGradient id="dieGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#111827" />
+                        <stop offset="100%" stop-color="#0b0f19" />
+                    </linearGradient>
+                    <filter id="glow">
+                        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                        <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                </defs>
+
+                <!-- Silicon Outer Package (BGA) -->
+                <rect x="20" y="20" width="960" height="610" rx="16" fill="url(#dieGrad)" stroke="#334155" stroke-width="2" />
+                <text x="40" y="50" fill="#64748b" font-size="12" font-weight="700" letter-spacing="1">INTEL MAX 10 (10M50DAF484C7G) DIE FLOORPLAN</text>
+
+                <!-- I/O Ring Perimeter -->
+                <rect x="50" y="70" width="900" height="530" rx="8" fill="none" stroke="#475569" stroke-dasharray="4 4" stroke-width="1.5" />
+                <text x="60" y="90" fill="#94a3b8" font-size="11">I/O Ring: 65 Pins Used (Bank 1B..8)</text>
+
+                <!-- Pins on Top Edge -->
+                <g id="io_top" class="io-layer">
+                    <rect x="120" y="32" width="60" height="26" rx="4" fill="#581c87" stroke="#c084fc" stroke-width="1" />
+                    <text x="127" y="49" fill="#f8fafc" font-size="10" font-weight="600">HEX5..4</text>
+
+                    <rect x="200" y="32" width="60" height="26" rx="4" fill="#581c87" stroke="#c084fc" stroke-width="1" />
+                    <text x="207" y="49" fill="#f8fafc" font-size="10" font-weight="600">HEX3..2</text>
+
+                    <rect x="280" y="32" width="60" height="26" rx="4" fill="#581c87" stroke="#c084fc" stroke-width="1" />
+                    <text x="287" y="49" fill="#f8fafc" font-size="10" font-weight="600">HEX1..0</text>
+
+                    <rect x="450" y="32" width="100" height="26" rx="4" fill="#3b0764" stroke="#c084fc" stroke-width="1.5" />
+                    <text x="457" y="49" fill="#c084fc" font-size="10" font-weight="700">CLK_50 (PIN_P11)</text>
+
+                    <rect x="750" y="32" width="80" height="26" rx="4" fill="#581c87" stroke="#c084fc" stroke-width="1" />
+                    <text x="758" y="49" fill="#f8fafc" font-size="10" font-weight="600">LEDR[9:0]</text>
+                </g>
+
+                <!-- FPGA Core Fabric Grid (X=1 to X=80, Y=1 to Y=35) -->
+                <!-- Column X=33: M9K Block RAM Column 1 (12 blocks) -->
+                <g id="m9k_col1" class="ram-layer" onmouseover="showTip(evt, 'M9K Block RAM Column 1 (X=33)', '12 M9K Blocks (X33_Y22..Y33)<br>Implements dual-port SRAM Port A (IF) & Port B (MEM)<br>Initialized with firmware.mif')" onmouseout="hideTip()">
+                    <rect x="420" y="140" width="36" height="380" rx="4" fill="#14532d" stroke="#4ade80" stroke-width="1.5" />
+                    <text x="426" y="320" fill="#4ade80" font-size="12" font-weight="700" transform="rotate(-90 426 320)">M9K RAM (X=33)</text>
+                </g>
+
+                <!-- Column X=53: M9K Block RAM Column 2 (4 blocks) -->
+                <g id="m9k_col2" class="ram-layer" onmouseover="showTip(evt, 'M9K Block RAM Column 2 (X=53)', '4 M9K Blocks (X53_Y26..Y30)<br>Upper 32-bit segment of dual-port SRAM')" onmouseout="hideTip()">
+                    <rect x="620" y="220" width="36" height="200" rx="4" fill="#14532d" stroke="#4ade80" stroke-width="1.5" />
+                    <text x="626" y="320" fill="#4ade80" font-size="12" font-weight="700" transform="rotate(-90 626 320)">M9K (X=53)</text>
+                </g>
+
+                <!-- Column X=48: DSP Block Column 1 -->
+                <g id="dsp_col1" class="dsp-layer" onmouseover="showTip(evt, 'Embedded DSP Multipliers (X=48)', 'DSPMULT_X48_Y8..Y10<br>Hardware 18-bit Multipliers utilized by RV32M MUL instruction')" onmouseout="hideTip()">
+                    <rect x="560" y="440" width="32" height="120" rx="4" fill="#7f1d1d" stroke="#f87171" stroke-width="1.5" />
+                    <text x="566" y="500" fill="#f87171" font-size="11" font-weight="700" transform="rotate(-90 566 500)">DSP (X=48)</text>
+                </g>
+
+                <!-- Column X=68: DSP Block Column 2 -->
+                <g id="dsp_col2" class="dsp-layer" onmouseover="showTip(evt, 'Embedded DSP Multipliers (X=68)', 'DSPMULT_X68_Y19..Y25<br>32 Multiplier elements utilized by 4×4 Systolic Array PEs')" onmouseout="hideTip()">
+                    <rect x="760" y="160" width="32" height="260" rx="4" fill="#7f1d1d" stroke="#f87171" stroke-width="1.5" />
+                    <text x="766" y="290" fill="#f87171" font-size="11" font-weight="700" transform="rotate(-90 766 290)">DSP (X=68)</text>
+                </g>
+
+                <!-- RISC-V RV32IM CPU Core Region -->
+                <g id="core_region" class="core-layer" onmouseover="showTip(evt, 'RISC-V RV32IM CPU Core', '3,420 LEs, 1,480 Registers<br>• IF, ID, EX, MEM, WB 5-Stage Pipeline<br>• Register File (32×32-bit)<br>• RV32M Hardware Multiplier & Divider<br>• Branch/Load Hazard Unit')" onmouseout="hideTip()">
+                    <rect x="100" y="140" width="280" height="420" rx="8" fill="rgba(2, 132, 199, 0.15)" stroke="#38bdf8" stroke-width="2" />
+                    <text x="120" y="175" fill="#38bdf8" font-size="16" font-weight="700">RISC-V RV32IM Core</text>
+                    <text x="120" y="200" fill="#94a3b8" font-size="12">3,420 LEs • 1,480 Regs</text>
+
+                    <!-- Core Submodules -->
+                    <rect x="120" y="220" width="110" height="90" rx="4" fill="#0369a1" fill-opacity="0.5" stroke="#38bdf8" />
+                    <text x="130" y="245" fill="#e0f2fe" font-size="11" font-weight="600">Register File</text>
+                    <text x="130" y="265" fill="#bae6fd" font-size="10">32×32-bit Array</text>
+                    <text x="130" y="285" fill="#7dd3fc" font-size="9">1,220 LEs / 1,024 Regs</text>
+
+                    <rect x="250" y="220" width="110" height="90" rx="4" fill="#0369a1" fill-opacity="0.5" stroke="#38bdf8" />
+                    <text x="260" y="245" fill="#e0f2fe" font-size="11" font-weight="600">ALU & Divider</text>
+                    <text x="260" y="265" fill="#bae6fd" font-size="10">32-bit LPM_DIV</text>
+                    <text x="260" y="285" fill="#7dd3fc" font-size="9">1,840 LEs</text>
+
+                    <rect x="120" y="330" width="240" height="70" rx="4" fill="#0369a1" fill-opacity="0.3" stroke="#38bdf8" />
+                    <text x="130" y="355" fill="#e0f2fe" font-size="11" font-weight="600">Pipeline Control & Hazards</text>
+                    <text x="130" y="375" fill="#bae6fd" font-size="10">IF/ID, ID/EX, EX/MEM, MEM/WB, Forwarding</text>
+
+                    <rect x="120" y="420" width="240" height="110" rx="4" fill="#0369a1" fill-opacity="0.2" stroke="#38bdf8" />
+                    <text x="130" y="445" fill="#e0f2fe" font-size="11" font-weight="600">MMIO & Bus Controller</text>
+                    <text x="130" y="465" fill="#bae6fd" font-size="10">Connects CPU to SRAM Port B and MMIO</text>
+                    <text x="130" y="485" fill="#94a3b8" font-size="9">Base Addr: 0x1000_0000</text>
+                </g>
+
+                <!-- AI Accelerator 4×4 Systolic Array Region -->
+                <g id="accel_region" class="accel-layer" onmouseover="showTip(evt, '4×4 INT8 Systolic Array Accelerator', '7,370 LEs, 1,717 Registers, 32 DSPs<br>• 16 Processing Elements (PE 0..3, 0..3)<br>• Signed INT8 × INT8 MAC units<br>• INT32 Accumulators & ReLU Activation<br>• MMIO Command Handshake (Start/Busy/Done)')" onmouseout="hideTip()">
+                    <rect x="475" y="140" width="445" height="420" rx="8" fill="rgba(234, 88, 12, 0.15)" stroke="#fb923c" stroke-width="2" />
+                    <text x="495" y="175" fill="#fb923c" font-size="16" font-weight="700">4×4 INT8 Systolic Array AI Accelerator</text>
+                    <text x="495" y="200" fill="#fed7aa" font-size="12">7,370 LEs • 1,717 Regs • 32 DSP Multipliers</text>
+
+                    <!-- 16 Processing Elements Mesh Grid (4x4) -->
+                    <!-- Row 0 -->
+                    <rect x="495" y="220" width="50" height="50" rx="4" fill="#9a3412" stroke="#fb923c" />
+                    <text x="503" y="250" fill="#fff" font-size="10" font-weight="700">PE[0,0]</text>
+                    <rect x="555" y="220" width="50" height="50" rx="4" fill="#9a3412" stroke="#fb923c" />
+                    <text x="563" y="250" fill="#fff" font-size="10" font-weight="700">PE[0,1]</text>
+                    <rect x="675" y="220" width="50" height="50" rx="4" fill="#9a3412" stroke="#fb923c" />
+                    <text x="683" y="250" fill="#fff" font-size="10" font-weight="700">PE[0,2]</text>
+                    <rect x="735" y="220" width="50" height="50" rx="4" fill="#9a3412" stroke="#fb923c" />
+                    <text x="743" y="250" fill="#fff" font-size="10" font-weight="700">PE[0,3]</text>
+
+                    <!-- Row 1 -->
+                    <rect x="495" y="280" width="50" height="50" rx="4" fill="#9a3412" stroke="#fb923c" />
+                    <text x="503" y="310" fill="#fff" font-size="10" font-weight="700">PE[1,0]</text>
+                    <rect x="555" y="280" width="50" height="50" rx="4" fill="#9a3412" stroke="#fb923c" />
+                    <text x="563" y="310" fill="#fff" font-size="10" font-weight="700">PE[1,1]</text>
+                    <rect x="675" y="280" width="50" height="50" rx="4" fill="#9a3412" stroke="#fb923c" />
+                    <text x="683" y="310" fill="#fff" font-size="10" font-weight="700">PE[1,2]</text>
+                    <rect x="735" y="280" width="50" height="50" rx="4" fill="#9a3412" stroke="#fb923c" />
+                    <text x="743" y="310" fill="#fff" font-size="10" font-weight="700">PE[1,3]</text>
+
+                    <!-- Row 2 -->
+                    <rect x="495" y="340" width="50" height="50" rx="4" fill="#9a3412" stroke="#fb923c" />
+                    <text x="503" y="370" fill="#fff" font-size="10" font-weight="700">PE[2,0]</text>
+                    <rect x="555" y="340" width="50" height="50" rx="4" fill="#9a3412" stroke="#fb923c" />
+                    <text x="563" y="370" fill="#fff" font-size="10" font-weight="700">PE[2,1]</text>
+                    <rect x="675" y="340" width="50" height="50" rx="4" fill="#9a3412" stroke="#fb923c" />
+                    <text x="683" y="370" fill="#fff" font-size="10" font-weight="700">PE[2,2]</text>
+                    <rect x="735" y="340" width="50" height="50" rx="4" fill="#9a3412" stroke="#fb923c" />
+                    <text x="743" y="370" fill="#fff" font-size="10" font-weight="700">PE[2,3]</text>
+
+                    <!-- Row 3 -->
+                    <rect x="495" y="400" width="50" height="50" rx="4" fill="#9a3412" stroke="#fb923c" />
+                    <text x="503" y="430" fill="#fff" font-size="10" font-weight="700">PE[3,0]</text>
+                    <rect x="555" y="400" width="50" height="50" rx="4" fill="#9a3412" stroke="#fb923c" />
+                    <text x="563" y="430" fill="#fff" font-size="10" font-weight="700">PE[3,1]</text>
+                    <rect x="675" y="400" width="50" height="50" rx="4" fill="#9a3412" stroke="#fb923c" />
+                    <text x="683" y="430" fill="#fff" font-size="10" font-weight="700">PE[3,2]</text>
+                    <rect x="735" y="400" width="50" height="50" rx="4" fill="#9a3412" stroke="#fb923c" />
+                    <text x="743" y="430" fill="#fff" font-size="10" font-weight="700">PE[3,3]</text>
+
+                    <!-- Accumulator & ReLU Output Stage -->
+                    <rect x="495" y="470" width="290" height="60" rx="4" fill="#c2410c" fill-opacity="0.4" stroke="#fb923c" />
+                    <text x="505" y="495" fill="#ffedd5" font-size="11" font-weight="700">Accumulator & Programmable ReLU</text>
+                    <text x="505" y="515" fill="#fdba74" font-size="10">16× 32-bit INT32 Accumulators $\rightarrow$ Writeback Buffer to SRAM</text>
+                </g>
+
+                <!-- Critical Timing Path Overlay (Hidden by Default) -->
+                <g id="criticalPathGroup" style="display: none;">
+                    <path d="M 305 265 C 380 265, 380 480, 420 480" fill="none" stroke="#ef4444" stroke-width="4" stroke-linecap="round" stroke-dasharray="6 4" filter="url(#glow)" />
+                    <circle cx="305" cy="265" r="6" fill="#ef4444" />
+                    <circle cx="420" cy="480" r="6" fill="#ef4444" />
+                    <text x="315" y="380" fill="#f87171" font-size="11" font-weight="700" background="#000">Critical Path: ALU Divider $\rightarrow$ M9K (154.3 ns)</text>
+                </g>
+            </svg>
+
+            <div id="tooltip" class="tooltip">
+                <div id="tipTitle" class="tooltip-title">Title</div>
+                <div id="tipBody" class="tooltip-body">Body</div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const tip = document.getElementById('tooltip');
+        const tipTitle = document.getElementById('tipTitle');
+        const tipBody = document.getElementById('tipBody');
+        const critPath = document.getElementById('criticalPathGroup');
+        const btnPath = document.getElementById('btnPath');
+
+        function showTip(evt, title, text) {
+            tipTitle.innerHTML = title;
+            tipBody.innerHTML = text;
+            tip.style.display = 'block';
+            tip.style.left = (evt.pageX + 15) + 'px';
+            tip.style.top = (evt.pageY + 15) + 'px';
+        }
+
+        function hideTip() {
+            tip.style.display = 'none';
+        }
+
+        function toggleCriticalPath() {
+            if (critPath.style.display === 'none') {
+                critPath.style.display = 'block';
+                btnPath.classList.add('active');
+            } else {
+                critPath.style.display = 'none';
+                btnPath.classList.remove('active');
+            }
+        }
+
+        function highlight(layer) {
+            const allLayers = ['core-layer', 'accel-layer', 'ram-layer', 'dsp-layer', 'io-layer'];
+            allLayers.forEach(l => {
+                const els = document.querySelectorAll('.' + l);
+                els.forEach(el => {
+                    if (layer === 'all' || l.startsWith(layer)) {
+                        el.style.opacity = '1';
+                    } else {
+                        el.style.opacity = '0.2';
+                    }
+                });
+            });
+        }
+
+        function showAll() {
+            highlight('all');
+            document.querySelectorAll('.tool-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('btnAll').classList.add('active');
+        }
+
+        function resetZoom() {
+            showAll();
+            if (critPath.style.display === 'block') {
+                toggleCriticalPath();
+            }
+        }
+    </script>
+</body>
+</html>
