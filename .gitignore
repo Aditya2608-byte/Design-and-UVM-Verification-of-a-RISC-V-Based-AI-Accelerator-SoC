@@ -12,6 +12,14 @@ db/
 incremental_db/
 work/
 work_msim/
+*.qws
+*.jditmp
+*.qdf
+c5_pin_model_dump.txt
+output_files/*.jdi
+output_files/*.sld
+output_files/*.smsg
+output_files/*.pin
 
 # Keep wave dumps
 !waves/*.vcd
